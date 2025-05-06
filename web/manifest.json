@@ -1,6 +1,6 @@
 {
-    "name": "todo_app",
-    "short_name": "todo_app",
+    "name": "login_sqflite_getx",
+    "short_name": "login_sqflite_getx",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
