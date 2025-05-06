@@ -6,173 +6,228 @@ import 'package:login_sqflite_getx/pages/login_page.dart';
 class RegisterPage extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  final TextEditingController confirmPasswordController = TextEditingController();
   final AuthController authController = Get.put(AuthController());
+
+  RegisterPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        padding: EdgeInsets.only(top: 50),
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0xFF0288D1), Color(0xFF01579B)],
-                begin: Alignment.topLeft,
-                end: Alignment.topRight)),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(left: 30),
-              child: Text(
-                "Create your\naccount",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 40.0,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Expanded(
-              child: Container(
-                padding: EdgeInsets.only(top: 50, left: 20, right: 30),
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10))),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Username",
-                      style: TextStyle(
-                          color: Color(0xFF0288D1),
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      controller: usernameController,
-                      decoration: InputDecoration(
-                          hintText: "Enter username",
-                          suffixIcon: Icon(Icons.person_2_outlined)),
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "Password",
-                      style: TextStyle(
-                          color: Color(0xFF0288D1),
-                          fontSize: 23,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    TextField(
-                      controller: passwordController,
-                      decoration: InputDecoration(
-                          hintText: "Enter password",
-                          suffixIcon: Icon(Icons.password_outlined)),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    SizedBox(
-                      height: 50,
-                    ),
-                    GestureDetector(
-                      child: Container(
-                        padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                                colors: [Color(0xFF0288D1), Color(0xFF01579B)],
-                                begin: Alignment.topLeft,
-                                end: Alignment.topRight),
-                            borderRadius: BorderRadius.circular(30)),
-                        width: MediaQuery.of(context).size.width,
-                        child: Center(
-                          child: Text(
-                            "SIGN UP",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold),
-                          ),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back_ios,
+            color: Theme.of(context).colorScheme.primary,
+          ),
+          onPressed: () => Get.back(),
+        ),
+      ),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 24.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const SizedBox(height: 30),
+                // Logo and Title
+                Center(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.person_add_alt_1,
+                        size: 70,
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                      const SizedBox(height: 16),
+                      Text(
+                        'Create Account',
+                        style: TextStyle(
+                          fontSize: 26,
+                          fontWeight: FontWeight.bold,
+                          color: Theme.of(context).colorScheme.primary,
                         ),
                       ),
-                      onTap: () async {
-                        final name = usernameController.text;
-                        final password = passwordController.text;
-
-                        if (name.isEmpty || password.isEmpty) {
-                          showDialog(
-                              context: context,
-                              builder: (_) => AlertDialog(
-                                    title: const Text("Error"),
-                                    content: const Text(
-                                        "Silahkan masukkan email,password dan nama anda"),
-                                    actions: [
-                                      TextButton(
-                                        onPressed: () => Navigator.of(context,
-                                                rootNavigator: true)
-                                            .pop('dialog'),
-                                        child: const Text("Ok"),
-                                      )
-                                    ],
-                                  ));
-                        } else {
-                          authController.register(
-                              usernameController.text, passwordController.text);
-                        }
-                      },
-                    ),
-                    SizedBox(height: MediaQuery.of(context).size.height / 7),
-                    Row(mainAxisAlignment: MainAxisAlignment.end, children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "Already have account?",
-                            style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w500),
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => LoginPage()));
-                            },
-                            child: Text(
-                              "SIGN IN",
-                              style: TextStyle(
-                                  color: Color(0xFF0288D1),
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),
-                            ),
-                          )
-                        ],
+                      const SizedBox(height: 8),
+                      Text(
+                        'Sign up to start managing your tasks',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.grey[600],
+                        ),
                       ),
-                    ])
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 40),
+                // Username Field
+                TextField(
+                  controller: usernameController,
+                  decoration: InputDecoration(
+                    labelText: 'Username',
+                    prefixIcon: const Icon(Icons.person),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Colors.grey[300]!,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[50],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Password Field
+                TextField(
+                  controller: passwordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    prefixIcon: const Icon(Icons.lock),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Colors.grey[300]!,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[50],
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Confirm Password Field
+                TextField(
+                  controller: confirmPasswordController,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    labelText: 'Confirm Password',
+                    prefixIcon: const Icon(Icons.lock_outline),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Colors.grey[300]!,
+                      ),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(12),
+                      borderSide: BorderSide(
+                        color: Theme.of(context).colorScheme.primary,
+                        width: 2,
+                      ),
+                    ),
+                    filled: true,
+                    fillColor: Colors.grey[50],
+                  ),
+                ),
+                const SizedBox(height: 24),
+                // Register Button
+                ElevatedButton(
+                  onPressed: () {
+                    if (usernameController.text.isEmpty || 
+                        passwordController.text.isEmpty || 
+                        confirmPasswordController.text.isEmpty) {
+                      Get.snackbar(
+                        'Error',
+                        'Please fill all fields',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red[100],
+                        colorText: Colors.red[800],
+                      );
+                      return;
+                    }
+                    
+                    if (passwordController.text != confirmPasswordController.text) {
+                      Get.snackbar(
+                        'Error',
+                        'Passwords do not match',
+                        snackPosition: SnackPosition.BOTTOM,
+                        backgroundColor: Colors.red[100],
+                        colorText: Colors.red[800],
+                      );
+                      return;
+                    }
+                    
+                    authController.register(
+                      usernameController.text,
+                      passwordController.text,
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.primary,
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    elevation: 2,
+                  ),
+                  child: const Text(
+                    'CREATE ACCOUNT',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                // Login Link
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Already have an account? ",
+                      style: TextStyle(
+                        color: Colors.grey[600],
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () => Get.off(() => LoginPage()),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Theme.of(context).colorScheme.primary,
+                        padding: EdgeInsets.zero,
+                        minimumSize: const Size(0, 0),
+                      ),
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
-              ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );
   }
-}
+} 
