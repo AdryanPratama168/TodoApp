@@ -230,4 +230,8 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
+<<<<<<< HEAD
 } 
+=======
+} 
+>>>>>>> 7717b373f96af9ab7dede51df37222f5e53c36a4
