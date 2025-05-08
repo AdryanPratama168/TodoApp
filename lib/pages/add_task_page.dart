@@ -164,11 +164,12 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   }
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(
                   widget.task == null ? "Tambah" : "Simpan",
-                  style: const TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
               ),
             ],

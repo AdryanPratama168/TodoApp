@@ -295,11 +295,12 @@ class HomePage extends StatelessWidget {
               'Sukses',
               'Task berhasil ditambahkan',
               snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.white,
               colorText: Colors.white,
             );
           }
         },
+        backgroundColor: Theme.of(context).colorScheme.primary,
         child: const Icon(Icons.add),
       ),
     );
