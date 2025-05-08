@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_sqflite_getx/controllers/auth_controller.dart';
 import 'package:login_sqflite_getx/pages/login_page.dart';
+import 'package:login_sqflite_getx/pages/onBoarding.dart';
 
 class RegisterPage extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -17,13 +18,15 @@ class RegisterPage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
+        // Mengubah fungsi tombol back agar kembali ke onBoarding
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back_ios,
             color: Theme.of(context).colorScheme.primary,
           ),
-          onPressed: () => Get.back(),
+          // Ganti dengan navigasi ke OnboardingPage
+          onPressed: () => Get.offAll(() => OnboardingPage()),
+          tooltip: 'Kembali ke Onboarding',
         ),
       ),
       body: SafeArea(
@@ -230,6 +233,4 @@ class RegisterPage extends StatelessWidget {
       ),
     );
   }
-} 
-
-
+}

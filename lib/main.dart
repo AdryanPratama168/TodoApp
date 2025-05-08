@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Onboarding(),
+      home: OnboardingPage(),
     );
   }
 }
