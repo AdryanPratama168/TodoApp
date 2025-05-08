@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_sqflite_getx/pages/onBoarding.dart';
+import 'package:login_sqflite_getx/pages/splash_screen.dart';
 import 'controllers/auth_controller.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
       ),
       debugShowCheckedModeBanner: false,
-      home: Onboarding(),
+      home: SplashScreen(),
     );
   }
 }
