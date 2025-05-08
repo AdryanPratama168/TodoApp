@@ -216,7 +216,7 @@ class HomePage extends StatelessWidget {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 15, vertical: 15),
+                                      horizontal: 18, vertical: 15),
                                   child: Row(
                                     children: [
                                       // Kolom kiri - judul dan tanggal
