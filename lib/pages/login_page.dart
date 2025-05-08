@@ -51,7 +51,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        'Todo List',
+                        'To Do List',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,

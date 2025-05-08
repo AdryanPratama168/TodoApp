@@ -12,7 +12,7 @@ class OnboardingPage extends StatelessWidget {
 
   final List<Map<String, dynamic>> _onboardingData = [
     {
-      'title': 'Welcome to Todo App',
+      'title': 'Welcome to To Do List',
       'description': 'Manage your tasks with ease and stay organized throughout your day',
       'icon':  Icons.check_circle_outline,
       'iconColor': const Color(0xFF1D5A8C),

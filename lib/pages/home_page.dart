@@ -84,12 +84,12 @@ class HomePage extends StatelessWidget {
                 // Konfirmasi logout dengan dialog
                 Get.dialog(
                   AlertDialog(
-                    title: const Text('Konfirmasi Logout'),
-                    content: const Text('Anda yakin ingin keluar dari aplikasi?'),
+                    title: const Text('Logout'),
+                    content: const Text('Are you sure you want to logout?'),
                     actions: [
                       TextButton(
                         onPressed: () => Get.back(),
-                        child: const Text('Batal'),
+                        child: const Text('Cancel'),
                       ),
                       TextButton(
                         onPressed: () {
@@ -149,7 +149,7 @@ class HomePage extends StatelessWidget {
                       prefixIconConstraints:
                           BoxConstraints(maxHeight: 20, minWidth: 25),
                       border: InputBorder.none,
-                      hintText: 'Search task, category...',
+                      hintText: 'Search todos, category...',
                       hintStyle: TextStyle(color: Color(0xFF717171))
                     ),
                   ),
@@ -192,7 +192,7 @@ class HomePage extends StatelessWidget {
                         ? Center(
                             child: Text(
                               isSearching.value
-                                ? 'Tidak ada task yang sesuai dengan pencarian'
+                                ? 'There are no search results'
                                 : 'Belum ada task yang ditambahkan',
                               style: TextStyle(
                                 color: Colors.grey, 
@@ -216,8 +216,9 @@ class HomePage extends StatelessWidget {
                                 ),
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
-                                      horizontal: 18, vertical: 15),
+                                      horizontal: 12, vertical: 12),
                                   child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       // Kolom kiri - judul dan tanggal
                                       Expanded(
@@ -292,90 +293,99 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
 
-                                      // Kolom kanan - tombol aksi
-                                      Row(
-                                        children: [
-                                          // Tombol lihat (view)
-                                          IconButton(
-                                            icon: const Icon(
-                                              Icons.visibility,
-                                              color: Colors.blue,
+                                      // Kolom kanan - tombol aksi (dengan padding yang dikurangi)
+                                      Container(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            // Tombol lihat (view)
+                                            IconButton(
+                                              icon: const Icon(
+                                                Icons.visibility,
+                                                color: Colors.blue,
+                                                size: 22,
+                                              ),
+                                              padding: EdgeInsets.symmetric(horizontal: 5),
+                                              onPressed: () {
+                                                Get.to(() => TaskDetailPage(
+                                                    task: task));
+                                              },
+                                              tooltip: 'Lihat Detail',
                                             ),
-                                            onPressed: () {
-                                              Get.to(() => TaskDetailPage(
-                                                  task: task));
-                                            },
-                                            tooltip: 'Lihat Detail',
-                                          ),
-                                          // Tombol edit
-                                          IconButton(
-                                            icon: const Icon(
-                                              Icons.edit,
-                                              color: Colors.orange,
+                                            // Tombol edit
+                                            IconButton(
+                                              icon: const Icon(
+                                                Icons.edit,
+                                                color: Colors.orange,
+                                                size: 22,
+                                              ),
+                                              padding: EdgeInsets.symmetric(horizontal: 5),
+                                              onPressed: () async {
+                                                final updatedTask =
+                                                    await Get.to(
+                                                  () =>
+                                                      AddTaskPage(task: task),
+                                                );
+                                                if (updatedTask != null &&
+                                                    updatedTask is Task) {
+                                                  todoController.updateTask(
+                                                      updatedTask);
+                                                }
+                                              },
+                                              tooltip: 'Edit',
                                             ),
-                                            onPressed: () async {
-                                              final updatedTask =
-                                                  await Get.to(
-                                                () =>
-                                                    AddTaskPage(task: task),
-                                              );
-                                              if (updatedTask != null &&
-                                                  updatedTask is Task) {
-                                                todoController.updateTask(
-                                                    updatedTask);
-                                              }
-                                            },
-                                            tooltip: 'Edit',
-                                          ),
-                                          // Tombol hapus
-                                          IconButton(
-                                            icon: const Icon(
-                                              Icons.delete,
-                                              color: Colors.red,
+                                            // Tombol hapus
+                                            IconButton(
+                                              icon: const Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                                size: 22,
+                                              ),
+                                              padding: EdgeInsets.symmetric(horizontal: 5),
+                                              onPressed: () {
+                                                // Konfirmasi hapus
+                                                Get.dialog(
+                                                  AlertDialog(
+                                                    title: const Text(
+                                                        'confirmation'),
+                                                    content: const Text(
+                                                        'Are you sure you want to delete this task?'),
+                                                    actions: [
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Get.back(),
+                                                        child: const Text(
+                                                            'Cancel'),
+                                                      ),
+                                                      TextButton(
+                                                        onPressed: () {
+                                                          todoController
+                                                              .deleteTask(
+                                                                  task.id!);
+                                                          Get.back();
+                                                          Get.snackbar(
+                                                            'Succeses',
+                                                            'Task succesfully deleted',
+                                                            snackPosition:
+                                                                SnackPosition
+                                                                    .BOTTOM,
+                                                            backgroundColor:
+                                                                Colors.green,
+                                                            colorText:
+                                                                Colors.white,
+                                                          );
+                                                        },
+                                                        child: const Text(
+                                                            'Delete'),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                );
+                                              },
+                                              tooltip: 'Hapus',
                                             ),
-                                            onPressed: () {
-                                              // Konfirmasi hapus
-                                              Get.dialog(
-                                                AlertDialog(
-                                                  title: const Text(
-                                                      'Konfirmasi'),
-                                                  content: const Text(
-                                                      'Apakah anda yakin ingin menghapus task ini?'),
-                                                  actions: [
-                                                    TextButton(
-                                                      onPressed: () =>
-                                                          Get.back(),
-                                                      child: const Text(
-                                                          'Batal'),
-                                                    ),
-                                                    TextButton(
-                                                      onPressed: () {
-                                                        todoController
-                                                            .deleteTask(
-                                                                task.id!);
-                                                        Get.back();
-                                                        Get.snackbar(
-                                                          'Sukses',
-                                                          'Task berhasil dihapus',
-                                                          snackPosition:
-                                                              SnackPosition
-                                                                  .BOTTOM,
-                                                          backgroundColor:
-                                                              Colors.green,
-                                                          colorText:
-                                                              Colors.white,
-                                                        );
-                                                      },
-                                                      child: const Text(
-                                                          'Hapus'),
-                                                    ),
-                                                  ],
-                                                ),
-                                              );
-                                            },
-                                            tooltip: 'Hapus',
-                                          ),
-                                        ],
+                                          ],
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -398,15 +408,19 @@ class HomePage extends StatelessWidget {
           if (newTask != null && newTask is Task) {
             todoController.addTask(newTask);
             Get.snackbar(
-              'Sukses',
-              'Task berhasil ditambahkan',
+              'Success',
+              'Task successfully added',
               snackPosition: SnackPosition.BOTTOM,
               backgroundColor: Colors.green,
-              colorText: Colors.white,
+              colorText: const Color.fromARGB(255, 255, 255, 255),
             );
           }
         },
-        child: const Icon(Icons.add),
+        backgroundColor: Theme.of(context).colorScheme.primary, // warna FAB sesuai logo
+        child: Icon(
+        Icons.add,
+        color: Colors.white, // tanda + menjadi putih
+      ),
       ),
     );
   }

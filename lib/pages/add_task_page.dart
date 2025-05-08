@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_sqflite_getx/models/task.dart';
-import 'package:intl/intl.dart'; // Tambahkan package intl untuk format tanggal
+import 'package:intl/intl.dart'; 
 
 class AddTaskPage extends StatefulWidget {
   final Task? task;
@@ -77,7 +77,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.task == null ? "Tambah Todo" : "Edit Todo"),
+        title: Text(widget.task == null ? "Add Todo" : "Edit Todo"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -88,7 +88,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               TextField(
                 controller: titleController,
                 decoration: const InputDecoration(
-                  labelText: "Judul",
+                  labelText: "Title",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -97,7 +97,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 controller: descController,
                 maxLines: 3,
                 decoration: const InputDecoration(
-                  labelText: "Deskripsi",
+                  labelText: "Description",
                   border: OutlineInputBorder(),
                 ),
               ),
@@ -107,7 +107,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 controller: dateController,
                 readOnly: true, // Membuat text field tidak bisa diedit langsung
                 decoration: InputDecoration(
-                  labelText: "Tanggal",
+                  labelText: "Date",
                   border: const OutlineInputBorder(),
                   suffixIcon: IconButton(
                     icon: const Icon(Icons.calendar_today),
@@ -122,7 +122,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
               DropdownButtonFormField<String>(
                 value: selectedCategory,
                 decoration: const InputDecoration(
-                  labelText: "Kategori",
+                  labelText: "Category",
                   border: OutlineInputBorder(),
                 ),
                 items: categories.map((String category) {
@@ -159,16 +159,17 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   } else {
                     // Tampilkan snackbar jika ada field yang kosong
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('Semua field harus diisi')),
+                      const SnackBar(content: Text('Please fill all fields')),
                     );
                   }
                 },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.primary,
                   padding: const EdgeInsets.symmetric(vertical: 15),
                 ),
                 child: Text(
-                  widget.task == null ? "Tambah" : "Simpan",
-                  style: const TextStyle(fontSize: 16),
+                  widget.task == null ? "Add" : "Save",
+                  style: const TextStyle(fontSize: 16,color: Colors.white),
                 ),
               ),
             ],
