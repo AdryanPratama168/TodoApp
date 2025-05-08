@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:login_sqflite_getx/controllers/auth_controller.dart';
 import 'package:login_sqflite_getx/pages/register_page.dart';
+import 'package:login_sqflite_getx/pages/onBoarding.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController usernameController = TextEditingController();
@@ -14,6 +15,23 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
+      // Tambahkan AppBar dengan tombol kembali
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        leadingWidth: 70,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 8.0),
+          child: IconButton(
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            onPressed: () => Get.offAll(() => OnboardingPage()),
+            tooltip: 'Kembali ke Onboarding',
+          ),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -21,7 +39,7 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 60),
+                const SizedBox(height: 30), // Menyesuaikan padding karena sudah ada AppBar
                 // Logo and Title
                 Center(
                   child: Column(
