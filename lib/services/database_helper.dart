@@ -20,7 +20,7 @@ class DatabaseHelper {
     final path = join(dbPath, filePath);
     return await openDatabase(
       path,
-      version: 3, // Menggunakan versi 3 untuk database
+      version: 3,
       onCreate: _createDB,
       onUpgrade: _onUpgrade,
     );
@@ -42,7 +42,7 @@ class DatabaseHelper {
     }
 
     if (oldVersion < 3) {
-      // Menambahkan kolom date dan category pada tabel tasks
+      // Menambahkan kolom 'date' dan 'category' jika versi database kurang dari 3
       print('Adding date and category columns to tasks table...');
       try {
         await db.execute("ALTER TABLE tasks ADD COLUMN date TEXT DEFAULT ''");

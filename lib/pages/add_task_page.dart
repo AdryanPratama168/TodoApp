@@ -30,7 +30,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
   @override
   void initState() {
     super.initState();
-    // Inisialisasi controller dengan nilai task jika ada
+    // Inisialisasi controller
     titleController = TextEditingController(text: widget.task?.title ?? '');
     descController =
         TextEditingController(text: widget.task?.description ?? '');
@@ -102,10 +102,10 @@ class _AddTaskPageState extends State<AddTaskPage> {
                 ),
               ),
               const SizedBox(height: 16),
-              // Field untuk tanggal dengan icon button
+              // TextField untuk tanggal
               TextField(
                 controller: dateController,
-                readOnly: true, // Membuat text field tidak bisa diedit langsung
+                readOnly: true, // Membuat field hanya untuk membaca
                 decoration: InputDecoration(
                   labelText: "Date",
                   border: const OutlineInputBorder(),
@@ -115,7 +115,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                   ),
                 ),
                 onTap: () =>
-                    _selectDate(context), // Buka date picker saat field di tap
+                    _selectDate(context), // Fungsi untuk menampilkan date picker
               ),
               const SizedBox(height: 16),
               // Dropdown untuk kategori
@@ -155,7 +155,7 @@ class _AddTaskPageState extends State<AddTaskPage> {
                       category: selectedCategory,
                     );
                     Navigator.pop(context,
-                        newTask); // kirim kembali ke halaman sebelumnya
+                        newTask);
                   } else {
                     // Tampilkan snackbar jika ada field yang kosong
                     ScaffoldMessenger.of(context).showSnackBar(

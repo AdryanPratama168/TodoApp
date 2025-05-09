@@ -37,7 +37,7 @@ class RegisterPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(height: 30),
-                // Logo and Title
+                // Logo dan Title
                 Center(
                   child: Column(
                     children: [

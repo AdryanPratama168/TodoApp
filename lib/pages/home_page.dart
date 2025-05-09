@@ -10,16 +10,12 @@ class HomePage extends StatelessWidget {
   final TodoController todoController = Get.put(TodoController());
   // Controller untuk search bar
   final TextEditingController searchController = TextEditingController();
-  // RxList untuk menyimpan hasil pencarian
   final RxList<Task> filteredTasks = <Task>[].obs;
-  // RxBool untuk tracking mode pencarian
   final RxBool isSearching = false.obs;
 
   HomePage({super.key}) {
     // Inisialisasi filteredTasks dengan semua tasks
     filteredTasks.assignAll(todoController.tasks);
-    
-    // Tambahkan listener ke todoController.tasks untuk update filteredTasks
     ever(todoController.tasks, (_) {
       _filterTasks(searchController.text);
     });
@@ -73,7 +69,6 @@ class HomePage extends StatelessWidget {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            // Ganti icon hamburger dengan tombol logout
             IconButton(
               icon: Icon(
                 Icons.logout,
@@ -93,7 +88,6 @@ class HomePage extends StatelessWidget {
                       ),
                       TextButton(
                         onPressed: () {
-                          // Arahkan ke halaman onboarding setelah konfirmasi
                           Get.offAll(() => OnboardingPage());
                         },
                         child: const Text('Logout'),
@@ -118,7 +112,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
               children: [
-                // Search bar dengan fungsionalitas
+                // Search bar
                 Container(
                   padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
                   decoration: BoxDecoration(
@@ -187,7 +181,7 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                       
-                      // Task list dengan Obx untuk real-time update
+                      // Task list dengan Obx
                       Obx(() => filteredTasks.isEmpty
                         ? Center(
                             child: Text(
@@ -202,8 +196,7 @@ class HomePage extends StatelessWidget {
                           )
                         : ListView.separated(
                             shrinkWrap: true,
-                            physics: NeverScrollableScrollPhysics(),
-                            padding: const EdgeInsets.all(12),
+                            physics: NeverScrollableScrollPhysics(), 
                             itemCount: filteredTasks.length,
                             separatorBuilder: (context, index) =>
                                 const SizedBox(height: 8),
@@ -293,12 +286,12 @@ class HomePage extends StatelessWidget {
                                         ),
                                       ),
 
-                                      // Kolom kanan - tombol aksi (dengan padding yang dikurangi)
+                                      // Kolom kanan - tombol aksi
                                       Container(
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
-                                            // Tombol lihat (view)
+                                            // Tombol lihat
                                             IconButton(
                                               icon: const Icon(
                                                 Icons.visibility,
@@ -416,10 +409,10 @@ class HomePage extends StatelessWidget {
             );
           }
         },
-        backgroundColor: Theme.of(context).colorScheme.primary, // warna FAB sesuai logo
+        backgroundColor: Theme.of(context).colorScheme.primary, 
         child: Icon(
         Icons.add,
-        color: Colors.white, // tanda + menjadi putih
+        color: Colors.white,
       ),
       ),
     );

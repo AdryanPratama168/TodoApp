@@ -18,7 +18,7 @@ class AuthController extends GetxController {
         backgroundColor: Colors.green[100],
         colorText: Colors.green[800],
       );
-      Get.offAll(() => HomePage()); // Navigasi ke halaman home
+      Get.offAll(() => HomePage());
     } else {
       Get.snackbar(
         "Login Failed",
@@ -40,7 +40,7 @@ class AuthController extends GetxController {
       backgroundColor: Colors.green[100],
       colorText: Colors.green[800],
     );
-    Get.to(() => LoginPage()); // Arahkan ke halaman login setelah registrasi
+    Get.to(() => LoginPage());
   } else {
     Get.snackbar(
       "Registration Failed",

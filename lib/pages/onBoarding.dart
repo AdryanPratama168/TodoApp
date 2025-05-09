@@ -45,7 +45,6 @@ class OnboardingPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Skip button (kosong)
             const SizedBox(height: 16),
 
             // PageView builder
@@ -66,12 +65,12 @@ class OnboardingPage extends StatelessWidget {
               ),
             ),
 
-            // Indicator & Buttons
+            // Bottom section
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 24.0),
               child: Column(
                 children: [
-                  // Indicators
+                  // Page indicator
                   Obx(() => Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: List.generate(
@@ -92,7 +91,7 @@ class OnboardingPage extends StatelessWidget {
 
                   const SizedBox(height: 32.0),
 
-                  // Get Started button
+                  // Get started button
                   Row(
                     children: [
                       Expanded(

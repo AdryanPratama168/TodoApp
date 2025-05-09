@@ -15,7 +15,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      // Tambahkan AppBar dengan tombol kembali
+      // AppBar
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
@@ -39,8 +39,8 @@ class LoginPage extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 30), // Menyesuaikan padding karena sudah ada AppBar
-                // Logo and Title
+                const SizedBox(height: 30), 
+                // Logo dan Title
                 Center(
                   child: Column(
                     children: [

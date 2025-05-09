@@ -46,7 +46,6 @@ class TaskDetailPage extends StatelessWidget {
             // Tanggal dan kategori dalam satu baris
             Row(
               children: [
-                // Tanggal
                 Row(
                   children: [
                     const Icon(Icons.calendar_today, size: 16, color: Colors.grey),

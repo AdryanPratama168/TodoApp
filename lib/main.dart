@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    Get.put(AuthController()); // Injeksi awal
+    Get.put(AuthController()); 
     return GetMaterialApp(
       title: 'Login App',
       theme: ThemeData(
