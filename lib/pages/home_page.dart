@@ -187,7 +187,7 @@ class HomePage extends StatelessWidget {
                             child: Text(
                               isSearching.value
                                 ? 'There are no search results'
-                                : 'Belum ada task yang ditambahkan',
+                                : 'No tasks added yet',
                               style: TextStyle(
                                 color: Colors.grey, 
                                 fontSize: 16
